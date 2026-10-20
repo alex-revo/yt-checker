@@ -35,3 +35,5 @@ If you want to get YOOtheme release notifications using your own Telegram bot, f
 - GitHub Actions (Cron Scheduling)
 - cURL (HTTP Requests)
 - Telegram Bot API
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
