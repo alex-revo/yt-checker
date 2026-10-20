@@ -70,11 +70,12 @@ function httpStatus(string $url): ?int
 
 function urlForMinor(int $minor): string
 {
+    $apiKey = defined('API_KEY') ? API_KEY : '';
     $ver = '5.0.' . $minor;
     $url = "https://api.yootheme.com/v1/package/yootheme_j33/{$ver}/yootheme_j_{$ver}.zip";
-    if (API_KEY !== '' && API_KEY !== 'ВАШ_КЛЮЧ_ОТ_YOOTHEME') {
+        
         $url .= '?key=' . rawurlencode(API_KEY);
-    }
+    
     return $url;
 }
 
