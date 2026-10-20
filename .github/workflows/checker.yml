@@ -18,6 +18,9 @@ jobs:
           php-version: '8.2'
 
       - name: Run checker script
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
         run: php check.php
 
       # Этот шаг сохраняет state.json
