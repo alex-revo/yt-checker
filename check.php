@@ -3,11 +3,11 @@
 declare(strict_types=1);
 
 // ================== НАСТРОЙКИ ==================
-const BOT_TOKEN   = 'REMOVED'; // ← Ваш токен
-const CHAT_ID     = 'REMOVED';                                         // ← Ваш chat_id
+define('BOT_TOKEN', getenv('BOT_TOKEN') ?: '');
+define('CHAT_ID', getenv('CHAT_ID') ?: '');
+define('APY_KEY', getenv('APY_KEY') ?: '');
 const START_MINOR = 52;    // С какой версии начинать
 const MAX_MINOR   = 200;   // Предохранитель
-const API_KEY     = 'REMOVED'; // Ключ доступа к Yootheme
 const STATE_FILE  = __DIR__ . '/state.json';
 const HTTP_TIMEOUT = 15;
 
