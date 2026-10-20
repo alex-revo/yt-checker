@@ -1,0 +1,31 @@
+name: Yootheme Version Checker
+
+on:
+  schedule:
+    # Запуск каждые 5 минут (время по UTC)
+    - cron: '*/5 * * * *'
+  workflow_dispatch: # Это добавит кнопку для ручного запуска
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+
+      - name: Run checker script
+        run: php check.php
+
+      # Этот шаг сохраняет state.json, чтобы при следующем запуске не отправлять сообщения повторно
+      - name: Commit state file
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Action"
+          git add state.json
+          git diff --quiet && git diff --staged --quiet || git commit -m "Update state [skip ci]"
+          git push
