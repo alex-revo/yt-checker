@@ -5,7 +5,7 @@ declare(strict_types=1);
 // ================== НАСТРОЙКИ ==================
 define('BOT_TOKEN', getenv('BOT_TOKEN') ?: '');
 define('CHAT_ID', getenv('CHAT_ID') ?: '');
-define('APY_KEY', getenv('APY_KEY') ?: '');
+define('API_KEY', getenv('API_KEY') ?: '');
 const START_MINOR = 52;    // С какой версии начинать
 const MAX_MINOR   = 200;   // Предохранитель
 const STATE_FILE  = __DIR__ . '/state.json';
@@ -70,11 +70,16 @@ function httpStatus(string $url): ?int
 
 function urlForMinor(int $minor): string
 {
+    // Берем ключ из константы. Если её нет, подставляем пустую строку
     $apiKey = defined('API_KEY') ? API_KEY : '';
+    
     $ver = '5.0.' . $minor;
     $url = "https://api.yootheme.com/v1/package/yootheme_j33/{$ver}/yootheme_j_{$ver}.zip";
-        
-        $url .= '?key=' . rawurlencode(API_KEY);
+    
+    // Добавляем ключ только если он реально есть и не пустой
+    if ($apiKey !== '' && $apiKey !== 'ВАШ_КЛЮЧ_ОТ_YOOTHEME') {
+        $url .= '?key=' . rawurlencode($apiKey);
+    }
     
     return $url;
 }
