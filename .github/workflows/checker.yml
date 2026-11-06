@@ -2,7 +2,7 @@ name: Yootheme Version Checker
 
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '*/16 * * * *'
   workflow_dispatch:
 
 jobs:
